@@ -17,6 +17,6 @@ if __name__ == '__main__':
     ]
     board = QuadBoard(quads)
 
-    plt.figure()
-    board.draw(plt)
+    fig = plt.figure(figsize=(12, 12))
+    board.draw(plt, fig)
     plt.show()

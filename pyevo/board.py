@@ -1,4 +1,6 @@
 from matplotlib.colors import ColorConverter
+import numpy as np
+
 
 class Board:
     """
@@ -52,7 +54,7 @@ class Board:
         assert y < 30
         self.board[x][y] == agent
 
-    def draw(self, plt):
+    def draw(self, plt, fig):
         """
         Draws the present state of the board.
         """
@@ -66,7 +68,18 @@ class Board:
                 row.append(rgb)
             M.append(row)
 
-        plt.imshow(M, interpolation='none')
+        plt.imshow(M, interpolation='nearest', origin='lower',
+                   extent = (0, 29, 0, 29))
+        ax = fig.gca()
+        ticks = np.arange(0.5, 30.5, 1.0)
+        plt.xlim((-0.5, 29.5))
+        plt.ylim((-0.5, 29.5))
+        ax.set_xticks(ticks)
+        ax.set_yticks(ticks)
+        ticklabels = [i + 1 for i in range(30)]
+        ax.set_xticklabels(ticklabels)
+        ax.set_yticklabels(ticklabels)
+        plt.grid()
 
 
     def init_agent(self, name):
