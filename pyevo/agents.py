@@ -94,8 +94,7 @@ class AlwaysDefectAgent(Agent):
 class TitForTatAgent(Agent):
     """
     An agent that plays the same thing that the present enemy played on the
-    last move (as opposed to the move that the last enemy played when matched
-    with this agent, which is what the `GrudgeTitForTatAgent` does.)
+    last move.
     """
 
     def update(self, enemy):
@@ -111,8 +110,7 @@ class TitForTatAgent(Agent):
 class NotTitForTatAgent(Agent):
     """
     An agent that plays the opposite thing that the present enemy played on the
-    last move (as opposed to the move that the last enemy played when matched
-    with this agent, which is what the `GrudgeNotTitForTatAgent` does.)
+    last move.
     """
 
     def update(self, enemy):
@@ -126,51 +124,3 @@ class NotTitForTatAgent(Agent):
             return 'D'
         else:
             return 'C'
-
-
-class GrudgeTitForTatAgent(Agent):
-    """
-    An agent that plays the same thing that the present enemy played on the
-    last move (as opposed to the move that the last enemy played when matched
-    with this agent, which is what the `GrudgeTitForTatAgent` does.)
-    """
-
-    def update(self, enemy):
-        """
-        Determines and returns the next move made by this agent, which is to
-        do what the last enemy did.
-
-        See the documentation for `Agent.update()` for more details.
-        """
-        if not hasattr(self, 'lastenemy'):
-            self.lastenemy = Agent('w')
-
-        action = self.lastenemy.last
-        self.lastenemy = enemy
-        return action
-
-
-class GrudgeNotTitForTatAgent(Agent):
-    """
-    An agent that plays the opposite thing that the present enemy played on the
-    last move (as opposed to the move that the last enemy played when matched
-    with this agent, which is what the `GrudgeNotTitForTatAgent` does.)
-    """
-
-    def update(self, enemy):
-        """
-        Determines and returns the next move made by this agent, which is to
-        do what the last enemy did.
-
-        See the documentation for `Agent.update()` for more details.
-        """
-        if not hasattr(self, 'lastenemy'):
-            self.lastenemy = Agent('w')
-
-        if self.lastenemy.last == 'C':
-            action = 'D'
-        else:
-            action = 'C'
-
-        self.lastenemy = enemy
-        return action

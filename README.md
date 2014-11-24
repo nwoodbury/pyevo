@@ -38,15 +38,5 @@ last round.
 
 The project specification is ambiguous on whether the "other agent" is defined
 as the agent that my agent is playing this round or whether it is the agent
-played in the last round.
-
-Therefore, to resolve this ambiguity, we define the Tit-for-Tat and the
-Not-Tit-for-Tat agents where "other agent" is the agent that each is playing
-in the current round.
-
-We also then define two other agents, Grudge-Tit-for-Tat and
-Grudge-Not-Tit-for-Tat which define "other agent" as the agent that each played
-in the previous round.
-
-In both cases, the move that is checked is the move that the "other agent"
-played in the previous round.
+played in the last round. We define "other agent" as the agent my agent is
+playing THIS round.
