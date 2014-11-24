@@ -106,3 +106,23 @@ class TitForTatAgent(Agent):
         See the documentation for `Agent.update()` for more details.
         """
         return enemy.last
+
+
+class NotTitForTatAgent(Agent):
+    """
+    An agent that plays the opposite thing that the present enemy played on the
+    last move (as opposed to the move that the last enemy played when matched
+    with this agent, which is what the `GrudgeNotTitForTatAgent` does.)
+    """
+
+    def update(self, enemy):
+        """
+        Determines and returns the next move made by this agent, which is to
+        do what the last enemy did.
+
+        See the documentation for `Agent.update()` for more details.
+        """
+        if enemy.last == 'C':
+            return 'D'
+        else:
+            return 'C'

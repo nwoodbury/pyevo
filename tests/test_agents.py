@@ -1,7 +1,8 @@
 from pyevo.agents import (Agent,
                           AlwaysCooperateAgent,
                           AlwaysDefectAgent,
-                          TitForTatAgent)
+                          TitForTatAgent,
+                          NotTitForTatAgent)
 
 
 class TestAlwaysCooperateAgent(object):
@@ -47,3 +48,18 @@ class TestTitForTatAgent(object):
         enemy.last = 'D'
         agent = TitForTatAgent('b')
         assert agent.update(enemy) == 'D'
+
+
+class TestNotTitForTatAgent(object):
+
+    def test_enemy_cooperated(self):
+        enemy = Agent('b')
+        enemy.last = 'C'
+        agent = NotTitForTatAgent('b')
+        assert agent.update(enemy) == 'D'
+
+    def test_enemy_defected(self):
+        enemy = Agent('b')
+        enemy.last = 'D'
+        agent = NotTitForTatAgent('b')
+        assert agent.update(enemy) == 'C'
