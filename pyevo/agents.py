@@ -47,12 +47,62 @@ class Agent:
         Parameters
         ----------
         enemy : Agent
-            The enemy that the agent will be playing THIS round.
+            The enemy that the agent will be playing THIS round. If the agent
+            uses info from the agent played in the last round, then it must
+            store that agent in its own state. Should not be storing anytime
+            older than that.
+
+        Returns
+        -------
+        action : str in {'C', 'D'}
+            The action made by this agent, whether it is to cooperate or to
+            defect.
         """
         raise NotImplementedError()
 
 
 class AlwaysCooperateAgent(Agent):
+    """
+    An agent that always cooperates, regardless of what the other agents do.
+    """
 
     def update(self, enemy):
+        """
+        Determines and returns the next move made by this agent, which is to
+        always cooperate.
+
+        See the documentation for `Agent.update()` for more details.
+        """
         return 'C'
+
+
+class AlwaysDefectAgent(Agent):
+    """
+    An agent that always defects, regardless of what the other agents do.
+    """
+
+    def update(self, enemy):
+        """
+        Determines and returns the next move made by this agent, which is to
+        always defect.
+
+        See the documentation for `Agent.update()` for more details.
+        """
+        return 'D'
+
+
+class TitForTatAgent(Agent):
+    """
+    An agent that plays the same thing that the present enemy played on the
+    last move (as opposed to the move that the last enemy played when matched
+    with this agent, which is what the `GrudgeTitForTatAgent` does.)
+    """
+
+    def update(self, enemy):
+        """
+        Determines and returns the next move made by this agent, which is to
+        do what the last enemy did.
+
+        See the documentation for `Agent.update()` for more details.
+        """
+        return enemy.last
