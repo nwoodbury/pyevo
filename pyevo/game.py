@@ -24,28 +24,24 @@ class Game:
         """
         fig = plt.figure(figsize=(12, 12))
         M = self.board.draw(plt, fig)
-        im = plt.imshow(M, interpolation='nearest', origin='lower',
+        im = plt.imshow(M, interpolation='none', origin='lower',
                         extent=(0, 29, 0, 29))
 
         ax = fig.gca()
 
         time_text = ax.text(0.02, 0.95, 'Initialization',
                             transform=ax.transAxes)
-        ticks = np.arange(0.5, 30.5, 1.0)
-        plt.xlim((-0.5, 29.5))
-        plt.ylim((-0.5, 29.5))
+        ticks = np.arange(0, 30)
+        plt.xlim((0, 29))
+        plt.ylim((0, 29))
         ax.set_xticks(ticks)
         ax.set_yticks(ticks)
-        ticklabels = [i + 1 for i in range(30)]
-        ax.set_xticklabels(ticklabels)
-        ax.set_yticklabels(ticklabels)
-        plt.grid()
 
         def update_fig(i):
             self.update()
             M = self.board.draw(plt, fig)
             im.set_array(M)
-            time_text.set_text('t = %i' % i + 1)
+            time_text.set_text('t = %i' % (i + 1))
             return im, ax
 
         ani = animation.FuncAnimation(fig, update_fig, frames=t, blit=True,
