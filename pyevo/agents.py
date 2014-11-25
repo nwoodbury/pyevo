@@ -34,11 +34,35 @@ class Agent:
         in the `update` function.
     color : matplotlib color
         Set by the parameter to the `__init__` function.
+    last_against : dictionary
+        Defines the last play made against each of the neighbors, used for
+        imitator dynamics only.
+    curr_against : dictionary
+        Defines the current play made against each of the neighbors. Should
+        be moved to last_against at the end of the round. Used by imitator
+        dynamics only.
+    name : str
+        The name of the agent as registered by the board.
+    curr_payoff : number
+        The current payoff to the agent. Used by imitator dynamics only.
     """
 
-    def __init__(self, color):
+    def __init__(self, color, name):
         self.last = 'C'
         self.color = color
+        self.last_against = {
+            'N': 'C',
+            'NE': 'C',
+            'E': 'C',
+            'SE': 'C',
+            'S': 'C',
+            'SW': 'C',
+            'W': 'C',
+            'NW': 'C'
+        }
+        self.curr_against = {}
+        self.name = name
+        self.curr_payoff = 0
 
     def update(self, enemy):
         """

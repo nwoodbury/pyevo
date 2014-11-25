@@ -35,6 +35,8 @@ class Board:
         A 30-30 array containing agents.
     """
 
+    dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+
     def set_agent(self, x, y, agent):
         """
         Sets the agent at (x, y) to agent.
@@ -98,4 +100,62 @@ class Board:
             The initialized agent, with a color initialized to be consistent
             with the color of all other agents of the same class.
         """
-        return self.agent_defs[name]['class'](self.agent_defs[name]['color'])
+        return self.agent_defs[name]['class'](
+            self.agent_defs[name]['color'], name)
+
+    def get_opposite_dir(self, dir):
+        """
+        Gets the direction opposite of what is given.
+
+        Parameters
+        ----------
+        dir : str in {'N', 'NE', 'E', etc.}
+
+        Returns
+        -------
+        dir : str in {'N', 'NE', 'E', etc.}
+            The opposite direction; e.g. if dir is N, returns S.
+        """
+        return {
+            'N': 'S',
+            'NE': 'SW',
+            'E': 'W',
+            'SE': 'NW',
+            'S': 'N',
+            'SW': 'NE',
+            'W': 'E',
+            'NW': 'SE'
+        }[dir]
+
+    def get_coord_at_dir(self, x, y, dir):
+        """
+        Gets the coordinates of the point at dir from (x, y).
+        N is +y, E is +x/
+
+        For example, if x = 5, y = 10, dir = NE, returns (6, 11).
+
+        If either x or y leaves the board, returns None in its place.
+
+        Parameters
+        ----------
+        x : int [0, 30)
+        y : int [0, 30)
+        dir : str in {'N', 'NE', 'E', etc.}
+
+        Returns
+        -------
+        x : int [0, 30) or None
+        y : int [0, 30) or None
+        """
+        if 'N' in dir:
+            y += 1
+        if 'S' in dir:
+            y -= 1
+        if 'E' in dir:
+            x += 1
+        if 'W' in dir:
+            x -= 1
+
+        if x < 0 or x >= 30 or y < 0 or y >= 30:
+            return None, None
+        return x, y
