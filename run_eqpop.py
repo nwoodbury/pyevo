@@ -33,4 +33,4 @@ if __name__ == '__main__':
     payoffs = prisoners_dilemma()
 
     game = ReplicationGame(pop, payoffs, 'eqpop_01')
-    game.run(100)
+    game.run(20, fps=1)

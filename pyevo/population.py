@@ -1,3 +1,4 @@
+import random
 
 
 class Population:
@@ -46,7 +47,33 @@ class Population:
         return self.agent_defs[name]['class']('w', name)
 
     def update(self):
-        pass
+        # Collect agents from current agents
+        agent_list = []
+        for name, lst in self.agents.iteritems():
+            agent_list += lst
+            self.agents[name] = []
+
+        for agent in agent_list:
+            self.compete_agent(agent, agent_list)
+
+    def compete_agent(self, agent, agent_list):
+        enemy_i = random.randint(0, 899)
+        enemy = agent_list[enemy_i]
+
+        agent_action = agent.update(enemy)
+        enemy_action = enemy.update(agent)
+
+        agent_payoff = self.payoffs[agent_action][enemy_action]
+        enemy_payoff = self.payoffs[enemy_action][agent_action]
+
+        if agent_payoff >= enemy_payoff:
+            best_agent = agent.name
+        else:
+            best_agent = enemy.name
+
+        new_agent = self.init_agent(best_agent)
+        new_agent.last = agent_action
+        self.agents[best_agent].append(new_agent)
 
     def draw():
         pass
