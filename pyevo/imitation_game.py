@@ -105,9 +105,6 @@ class ImitationGame(Game):
                 best_payoff = enemy.curr_payoff
                 best_agent = enemy.name
 
-        if x == 14 or x == 15 or y == 14 or y == 15:
-            print '(%i, %i) %s -> %s' % (x, y, agent.name, best_agent)
-
         new_agent = self.board.init_agent(best_agent)
         # Update state of new agent to curr agent
         new_agent.last = agent.last

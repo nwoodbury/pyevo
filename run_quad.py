@@ -4,8 +4,6 @@ from pyevo.agents import (TitForTatAgent, NotTitForTatAgent,
 from pyevo.payoffs import prisoners_dilemma
 from pyevo.imitation_game import ImitationGame
 
-import matplotlib.pyplot as plt
-
 
 if __name__ == '__main__':
     quads = [
@@ -27,4 +25,4 @@ if __name__ == '__main__':
     payoffs = prisoners_dilemma()
 
     game = ImitationGame(board, payoffs)
-    game.run()
+    game.run(100)
