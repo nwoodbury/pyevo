@@ -24,5 +24,5 @@ if __name__ == '__main__':
 
     payoffs = prisoners_dilemma()
 
-    game = ImitationGame(board, payoffs)
+    game = ImitationGame(board, payoffs, 'quad_01')
     game.run(100)

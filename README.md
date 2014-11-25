@@ -5,6 +5,13 @@ CS 670 Lab 2 - Evolutionary Dynamics
 
 ## Installation ##
 
+Install `ffmpeg` (required to save animations). For linux:
+
+        sudo add-apt-repository ppa:jon-severinsson/ffmpeg
+        sudo apt-get update
+        sudo apt-get install ffmpeg
+        sudo apt-get install frei0r-plugins
+
 Clone `pyevo` into the directory of choice:
 
         git clone https://github.com/nwoodbury/pyevo
