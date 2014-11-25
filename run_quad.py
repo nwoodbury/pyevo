@@ -1,6 +1,9 @@
 from pyevo.quad_board import QuadBoard
 from pyevo.agents import (TitForTatAgent, NotTitForTatAgent,
                           AlwaysCooperateAgent, AlwaysDefectAgent)
+from pyevo.payoffs import prisoners_dilemma
+from pyevo.imitation_game import ImitationGame
+
 import matplotlib.pyplot as plt
 
 
@@ -17,6 +20,11 @@ if __name__ == '__main__':
     ]
     board = QuadBoard(quads)
 
-    fig = plt.figure(figsize=(12, 12))
-    board.draw(plt, fig)
-    plt.show()
+    # fig = plt.figure(figsize=(12, 12))
+    # board.draw(plt, fig)
+    # plt.show()
+
+    payoffs = prisoners_dilemma()
+
+    game = ImitationGame(board, payoffs)
+    game.run()

@@ -54,7 +54,13 @@ class Board:
         assert x < 30
         assert y >= 0
         assert y < 30
-        self.board[x][y] == agent
+        self.board[x][y] = agent
+
+    def at(self, x, y):
+        """
+        Returns the agent at (x, y).
+        """
+        return self.board[x][y]
 
     def draw(self, plt, fig):
         """

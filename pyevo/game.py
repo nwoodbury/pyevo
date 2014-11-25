@@ -8,3 +8,10 @@ class Game:
 
     def __init__(self, board, payoffs):
         self.board = board
+        self.payoffs = payoffs
+
+    def run(self):
+        """
+        Runs the game, animating the results.
+        """
+        pass
