@@ -69,7 +69,7 @@ class Board:
             M.append(row)
 
         plt.imshow(M, interpolation='nearest', origin='lower',
-                   extent = (0, 29, 0, 29))
+                   extent=(0, 29, 0, 29))
         ax = fig.gca()
         ticks = np.arange(0.5, 30.5, 1.0)
         plt.xlim((-0.5, 29.5))
@@ -81,11 +81,16 @@ class Board:
         ax.set_yticklabels(ticklabels)
         plt.grid()
 
-
     def init_agent(self, name):
         """
         Returns an initialized agent that is defined under `name` in
         `self.agent_defs`.
+
+        Parameters
+        ----------
+        name : str
+            The name of the agent to initialized. Must be a key in
+            `self.agents_def`
 
         Return
         ------
