@@ -44,9 +44,24 @@ class Population:
                 self.agents[name].append(self.init_agent(name))
 
     def init_agent(self, name):
+        """
+        Initializes and returns a new agent of type name.
+        """
         return self.agent_defs[name]['class']('w', name)
 
     def update(self):
+        """
+        Runs a round of the replication dynamics. Does this by
+
+            1. Collecting a list of all agents currently in the game.
+            2. Iterate over each agent and compete it against a random agent.
+                - The agent either stays the same type or replicates the type
+                  of the enemy, depending on which received the higher payoff.
+                - Note that each agent competes against the population before
+                  the update made in this round, not during (therefore, each
+                  has the same odds of competing against the same type of
+                  agent).
+        """
         # Collect agents from current agents
         agent_list = []
         for name, lst in self.agents.iteritems():

@@ -73,11 +73,21 @@ type.
 
             python run_circle.py
 
-    - Variations to try: (commount and define a new definition for `agents`,
+    - Variations to try: (comment and define a new definition for `agents`,
       starting line 10).
         * Try different agents in differnt locations
         * Involve Not-Tit-for-Tat in the mix
         * Implement a variation with quads instead of sides
+
+3. Equal Populations: This is a replicator dynamic game instead of an
+imitator dynamic game.
+    - To run:
+
+        python run_eqpop.py
+
+    - Variations to try: (comment out and define a new definition for `agents`)
+        * Play with different initial populations (can't think of much else
+          to try).
 
 ## Defining a New Game ##
 
@@ -128,7 +138,6 @@ is better to batch create sections of the board using for loops.
 
 ## TODO ##
 
-* Implement Replication Dynamics
 * Add other payoffs (stag hunt, battle of the sexes)
 * Use Gamma instead of time steps to define length of the game and compute
   payoffs.
